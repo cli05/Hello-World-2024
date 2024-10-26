@@ -641,9 +641,9 @@ def merge_boxes(boxes, threshold):
 
 def write(filename):
     with open(filename, mode = 'w', newline = '') as file:
-        writer = csv.DictWriter(file)
+        writer = csv.writer(file)
         for staff in staffs:
-            for bar in staff:
+            for bar in staff.getBars():
                 p = []
                 for prim in bar.getPrimitives():
                     p.append([prim.getPitch(), prim.getDuration()])
