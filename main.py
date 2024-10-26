@@ -21,6 +21,7 @@ __status__ = "Prototype"
 
 import sys
 import cv2
+import csv
 import numpy as np
 from matplotlib import pyplot as plt
 from collections import Counter
@@ -638,6 +639,15 @@ def merge_boxes(boxes, threshold):
         filtered_boxes.append(r)
     return filtered_boxes
 
+def write(filename):
+    with open(filename, mode = 'w', newline = '') as file:
+        writer = csv.DictWriter(file)
+        for staff in staffs:
+            for bar in staff:
+                p = []
+                for prim in bar.getPrimitives():
+                    p.append([prim.getPitch(), prim.getDuration()])
+                writer.writerow(p)
 
 if __name__ == "__main__":
 
@@ -1203,6 +1213,7 @@ if __name__ == "__main__":
         for staff in staffs:
             for bar in staff.getBars():
                 print(bar.getPrimitives())
+        write("test.csv")
 
     # -------------------------------------------------------------------------------
     # Sequence MIDI

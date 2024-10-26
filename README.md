@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 # Hello-World-2024
-=======
+
 # cadenCV
 
 cadenCV is an optical music recognition system written in the Python programming language which reads sheet music and sequences a MIDI file for user playback.
@@ -98,4 +98,4 @@ To learn more about the cadenCV: Optical Music Recognition system, read the acco
 ## VII. Output Example
 
 To hear an output example from cadenCV (Mary had a Little Lamb), visit: https://www.youtube.com/watch?v=amL6wHfAShw
->>>>>>> master
+
