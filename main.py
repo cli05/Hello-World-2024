@@ -646,7 +646,10 @@ def write(filename):
             for bar in staff.getBars():
                 p = []
                 for prim in bar.getPrimitives():
-                    p.append([pitch_to_MIDI[prim.getPitch()], prim.getDuration()])
+                    if (prim.getPrimitive() == "note"):
+                        p.append([pitch_to_MIDI[prim.getPitch()], prim.getDuration()])
+                    else:
+                        p.append([0, prim.getDuration()])
                 writer.writerow(p)
 
 if __name__ == "__main__":
