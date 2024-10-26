@@ -26,7 +26,7 @@ from matplotlib import pyplot as plt
 from collections import Counter
 from copy import deepcopy
 from PIL import Image
-from midiutil.MidiFile import MIDIFile
+# from midiutil.MidiFile import MIDIFile
 
 from best_match import match
 from box import BoundingBox
@@ -650,7 +650,8 @@ if __name__ == "__main__":
     # Binarization + Blurring (Otsu): https://docs.opencv.org/3.3.1/d7/d4d/tutorial_py_thresholding.html
 
     # ============ Read Image ============
-    img_file = sys.argv[1:][0]
+    # img_file = sys.argv[1:][0]
+    img_file = "/Users/keshavsreekantham/cadenCV/resources/samples/kookaburra.jpg"
     img = cv2.imread(img_file, 0)
 
     # ============ Noise Removal ============
@@ -1196,43 +1197,49 @@ if __name__ == "__main__":
                 bar = Bar()
         # Add final bar in staff
         staffs[i].addBar(bar)
+        print("THIS THIS THE STAFF AT 1")
+        print(staffs[1])
+        print("Bars")
+        for staff in staffs:
+            for bar in staff.getBars():
+                print(bar.getPrimitives())
 
     # -------------------------------------------------------------------------------
     # Sequence MIDI
     # -------------------------------------------------------------------------------
 
-    print("[INFO] Sequencing MIDI")
-    midi = MIDIFile(1)
-    track = 0
-    time = 0
-    channel = 0
-    volume = 100
+    # print("[INFO] Sequencing MIDI")
+    # midi = MIDIFile(1)
+    # track = 0
+    # time = 0
+    # channel = 0
+    # volume = 100
 
-    midi.addTrackName(track, time, "Track")
-    midi.addTempo(track, time, 110)
+    # midi.addTrackName(track, time, "Track")
+    # midi.addTempo(track, time, 110)
 
-    for i in range(len(staffs)):
-        print("==== Staff {} ====".format(i+1))
-        bars = staffs[i].getBars()
-        for j in range(len(bars)):
-            print("--- Bar {} ---".format(j + 1))
-            primitives = bars[j].getPrimitives()
-            for k in range(len(primitives)):
-                duration = primitives[k].getDuration()
-                if (primitives[k].getPrimitive() == "note"):
-                    pitch = pitch_to_MIDI[primitives[k].getPitch()]
-                    midi.addNote(track, channel, pitch, time, duration, volume)
-                print(primitives[k].getPrimitive())
-                print(primitives[k].getPitch())
-                print(primitives[k].getDuration())
-                print("-----")
-                time += duration
+    # for i in range(len(staffs)):
+    #     print("==== Staff {} ====".format(i+1))
+    #     bars = staffs[i].getBars()
+    #     for j in range(len(bars)):
+    #         print("--- Bar {} ---".format(j + 1))
+    #         primitives = bars[j].getPrimitives()
+    #         for k in range(len(primitives)):
+    #             duration = primitives[k].getDuration()
+    #             if (primitives[k].getPrimitive() == "note"):
+    #                 pitch = pitch_to_MIDI[primitives[k].getPitch()]
+    #                 midi.addNote(track, channel, pitch, time, duration, volume)
+    #             print(primitives[k].getPrimitive())
+    #             print(primitives[k].getPitch())
+    #             print(primitives[k].getDuration())
+    #             print("-----")
+    #             time += duration
 
-    # ------- Write to disk -------
-    print("[INFO] Writing MIDI to disk")
-    binfile = open("output/output.mid", 'wb')
-    midi.writeFile(binfile)
-    binfile.close()
+    # # ------- Write to disk -------
+    # print("[INFO] Writing MIDI to disk")
+    # binfile = open("output/output.mid", 'wb')
+    # midi.writeFile(binfile)
+    # binfile.close()
 
 
 
