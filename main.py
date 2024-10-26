@@ -640,7 +640,7 @@ def merge_boxes(boxes, threshold):
     return filtered_boxes
 
 def write(filename):
-    with open(filename, mode = 'w', newline = '') as file:
+    with open(filename, mode = 'a', newline = '') as file:
         writer = csv.writer(file)
         for staff in staffs:
             for bar in staff.getBars():
